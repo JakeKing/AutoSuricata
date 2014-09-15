@@ -1,23 +1,27 @@
 ##THIS WILL NOT WORK##
 ##PLEASE CHECK BACK SOON FOR PROGRESS :)##
 
-## AutoSuricata v0.1
+## AutoSuricata v0.2
 ## @JakeKing
-## All bullshit, Ubuntu 12.04
+## Designed for Ubuntu 12.04
 ## Oinkmaster, Suricata and GO!
+## Will need to be run as sudo.
 
 ECHO "The following script is designed to make installation of Suricata and Oinkmaster fluent and easy."
 ECHO "There are a number of options to choose from, so ensure you have taken a look at the readme : github.com/jakeking/autosuricata"
 ECHO "Please, take note that this is in the VERY early stages of development and will need serious work to be on par with AutoSnort"
 
 ECHO " Adding Repo's"
+##adding the suricata Repo (stable build)
+##You can comment out suricata-stable if you wish to use the suricata-beta builds.
+
 cd ~
+#sudo add-apt-repository ppa:oisf/suricata-beta
 sudo add-apt-repository ppa:oisf/suricata-stable
 sudo apt-get update
 
-
 ECHO " Installing Suricata and associated packages"
-sudo apt-get install suricata
+sudo apt-get install -y suricata
 
 
 ECHO " Installing Oinkmaster"
