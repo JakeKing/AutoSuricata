@@ -15,6 +15,8 @@ ECHO " Adding Repo's"
 ##adding the suricata Repo (stable build)
 ##You can comment out suricata-stable if you wish to use the suricata-beta builds.
 
+###########Need to add check for which add-apt-repository and install software-properties-common if not...
+
 cd ~
 #sudo add-apt-repository ppa:oisf/suricata-beta
 sudo add-apt-repository ppa:oisf/suricata-stable
