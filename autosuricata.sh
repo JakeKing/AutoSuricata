@@ -23,11 +23,11 @@ sudo add-apt-repository ppa:oisf/suricata-stable
 sudo apt-get update
 
 ECHO " Installing Suricata and associated packages"
-sudo apt-get install -y suricata
+sudo apt-get -V install -y suricata
 
 
 ECHO " Installing Oinkmaster"
-sudo apt-get install oinkmaster
+sudo apt-get -V install -y oinkmaster
 
 ECHO " Editing /etc/oinkmaster.conf with Emerging Threats Ruleset for Suricata"
 ECHO " If this fails, manually add the Suricata repo http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz"
@@ -46,5 +46,8 @@ ECHO " Creating directories, pulling down rules and fixing some things"
 ECHO " Starting Suricata!"
 
 ECHO " Testing Suricata with testmyids.com"
-
+cd ~
+wget testmyids.com
+rm -fr index.html
 ECHO " Now check logs!"
+tail -f /var/log/syslog
