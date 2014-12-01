@@ -1,7 +1,7 @@
 AutoSuricata
 ============
 
-Suricata-IDS install script to automate (or simplify) deployments for Ubuntu!
+Suricata-IDS install script to automate (or simplify) deployments for Ubuntu. Now with added Sensu Checks for Suricata!
 
 I was well aware of the AutoSnort project built by @da667 that simplified the installation process of Snort super well and decided to build my own deployment script for Suricata to learn a little more about scripting, automation and deployment.
 
