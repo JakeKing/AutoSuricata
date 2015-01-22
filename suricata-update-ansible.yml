@@ -1,0 +1,27 @@
+# Update Suricata on a Ubuntu server using ansible-playbooks
+# This script requires an inventory.yml and files/suricata.yaml file to work properly.
+# Usage: Only used to update conifiguration files when a system has Suricata installed
+# Backup existing configuration and rules, and update libhtp1.
+
+
+- hosts: all
+  remote_user: ##[[ADD SUDO USER HERE]]
+  sudo: true
+  tasks:
+    - name: stop suricata daemon if it is running
+      service: name=suricata state=stopped
+
+    - name: update to new version of Suricata, Grab new rules from Emerging Threats
+      apt: name=suricata update_cache=yes
+
+    - name: install libhtp1 from the ubuntu repository
+      apt: name=libhtp1 update_cache=no
+
+    - name: Copy over the Suricata config
+      copy: src=files/suricata.yaml dest=/etc/suricata/suricata.yaml owner=ubuntu group=ubuntu mode=644 backup=yes
+
+    - name: Starting suricata in Daemon mode on eth0. safe start mode.
+      command: 'suricata -c /etc/suricata/suricata.yaml -i eth0 --init-errors-fatal -D'
+
+    - name: Comment in SecurityAlerts on Hipchat
+      hipchat: token=###################### [[Hipchat Token Here]] room=################# [[ Room token Here ]] color=purple  msg="@here Suricata was updated on inventory hosts... Deploy complete!"
